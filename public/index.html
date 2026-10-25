@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أزهر AI – مساعدك الدراسي الذكي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1430;--card:#12203f;--tx:#eaf0ff;--mu:#9db0d8;--pr:#3b82f6;--pr2:#1b2f5c;--bd:#26396a;--ok:#34d399;--no:#f87171;--gold:#e8b13c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+:root[data-theme="light"]{--bg:#f2f5fb;--card:#fff;--tx:#10204a;--mu:#5b6b91;--pr:#2563eb;--pr2:#e7efff;--bd:#dbe3f2;--ok:#16a34a;--no:#dc2626;--gold:#b7791f}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(900px 320px at 50% -80px,#23468c66,transparent 70%) no-repeat,var(--bg);color:var(--tx);font-family:Cairo,Tahoma,Arial,sans-serif;line-height:1.7;padding-bottom:84px}
+.w{max-width:720px;margin:0 auto;padding:10px 12px}
+.hd{display:flex;justify-content:space-between;align-items:center}
+h1{margin:0;font-size:1.25rem;color:var(--pr)}h3{margin:2px 0 6px;font-size:1rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px;margin-bottom:10px}
+input,select,textarea{width:100%;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:9px;margin:4px 0}
+button{font:inherit;cursor:pointer}
+.go{background:var(--pr);color:#fff;border:0;border-radius:12px;padding:9px 
+16px;font-weight:600}
+.go:disabled{opacity:.5}.g2{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.ic{background:none;border:0;font-size:1.3rem}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:4px 0}
+.chips button{white-space:nowrap;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:18px;padding:4px 12px}
+.chips button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.st{text-align:center}.st b{display:block;font-size:1.5rem;color:var(--pr)}.st span{color:var(--mu);font-size:.8rem}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pr)}
+.sc{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;padding:12px 6px;text-align:center}
+#msgs{display:flex;flex-direction:column;gap:8px;min-height:40vh;max-height:56vh;overflow-y:auto}
+.b{max-width:90%;padding:8px 12px;border-radius:14px;white-space:pre-wrap}
+.b.me{align-self:flex-start;background:var(--pr);color:#fff}.b.ai{align-self:flex-end;background:var(--pr2)}
+.row{display:flex;gap:6px;align-items:center}.row>*{margin:0}
+.t{display:flex;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid var(--bd)}.t input{width:auto;margin:0}.t span{flex:1}.t.d span{text-decoration:line-through;color:var(--mu)}
+.o{display:block;width:100%;text-align:right;border:1px 
+solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;padding:8px;margin:4px 0}
+.o.sel{border-color:var(--pr);background:var(--pr2)}.o.ok{border-color:var(--ok);background:var(--pr2)}.o.bad{border-color:var(--no)}
+#clk{font-size:2.8rem;font-weight:700;text-align:center;color:var(--pr)}
+.c{text-align:center;color:var(--mu);font-size:.85rem}.mu{color:var(--mu);font-size:.85rem}
+#nav{position:fixed;inset:auto 0 0 0;display:grid;grid-template-columns:repeat(6,1fr);background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+#nav button{background:none;border:0;color:var(--mu);padding:8px 0;font-size:.66rem}#nav button.on{color:var(--gold);font-weight:700}#nav b{display:block;font-size:1.25rem}
+.pre{white-space:pre-wrap}
+h1 small{display:block;font-size:.62rem;color:var(--mu);font-weight:400}
+.card{box-shadow:0 4px 16px #0003}
+.hero{border-radius:20px;padding:18px 16px;margin-bottom:10px;color:#fff;background:linear-gradient(135deg,#1c2f66,#5a3d7a 60%,#c9782b)}
+.hero h2{margin:0 0 4px;font-size:1.25rem}.hero p{margin:0 0 6px;opacity:.9}.hero small{opacity:.8}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
+.tile{border:0;border-radius:16px;padding:14px 8px;color:#fff;text-align:center;box-shadow:0 4px 14px #0004}
+.tile i{display:block;font-style:normal;font-size:1.7rem}.tile 
+b{display:block}.tile span{font-size:.72rem;opacity:.9}
+.ring{width:112px;height:112px;border-radius:50%;background:conic-gradient(var(--pr) calc(var(--p)*1%),var(--bd) 0);display:grid;place-items:center;flex:none}
+.ring span{width:86px;height:86px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-weight:700;font-size:1.3rem}
+.pb{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.85rem}.pb em{width:92px;font-style:normal}.pb .bar{flex:1}.pb u{text-decoration:none;color:var(--mu);width:34px}
+.st{border-top:3px solid var(--gold)}
+.sc .ico{display:block;font-size:2rem}.sc{box-shadow:0 3px 12px #0003}
+.lk{display:flex;gap:6px;flex-wrap:wrap}.lk .go{padding:6px 12px;font-size:.85rem}
+@media(min-width:700px){.w{max-width:900px}.tiles{grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<div class="w"><div class="hd"><h1>🕌 أزهر AI<small>منصة الأزهرية الذكية</small></h1><button class="ic" onclick="thm()">🌓</button></div><div id="app"></div></div>
+<div id="off" style="display:none;background:var(--no);color:#fff;text-align:center;padding:4px;position:sticky;top:0;z-index:9">⚠️ لا يوجد اتصال بالإنترنت. تقدمك محفوظ، والمعلم الذكي يحتاج اتصالًا.</div><div id="nav" hidden></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const AR=['الأول','الثاني','الثالث','الرابع','الخامس','السادس'],today=()=>new Date().toISOString().slice(0,10);
+let D=null,T={stage:'ابتدائي'},V={v:'home',mode:'شرح 
+درس',csub:'',busy:0,qz:null,ans:[],sub:0};
+try{D=JSON.parse(localStorage.getItem('az'))}catch(e){}if(D&&typeof D==='object')D.sums=D.sums||[];
+try{const t=localStorage.getItem('azt');if(t)document.documentElement.dataset.theme=t}catch(e){}
+function save(){try{localStorage.setItem('az',JSON.stringify(D))}catch(e){}}
+function thm(){const d=document.documentElement,n=(d.dataset.theme||'dark')==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('azt',n)}catch(e){}}
+const MODES={'شرح درس':'سيكتب الطالب اسم درس فقط. اشرحه بالتفصيل بهذا الترتيب: 1) مقدمة وأهمية الدرس 2) الشرح التفصيلي الكامل 3) أركانه أو عناصره أو شروطه أو أقسامه كاملة ومرقمة 4) أمثلة من السهل إلى الصعب 5) ملخص بنقاط. وفي النهاية ضع عنوان «🧒 الشرح المبسط جدًا» واشرح الدرس كله بكلمات سهلة جدًا وتشبيه من حياة طفل صغير بحيث يفهمه أي طفل. لا تختلق معلومات، وإن لم تتأكد من تفاصيل المنهج فقل ذلك','مدرس':'اشرح بالتدريج من الصفر بأمثلة من السهل للصعب، وأنهِ بسؤال تأكد قصير','ملخص':'حوّل ما أرسله إلى ملخص منظم بعناوين ونقاط','حل مسائل':'حل المسألة خطوة بخطوة مع ذكر القانون وسبب كل خطوة','اختبرني':'اطرح سؤالًا واحدًا في كل مرة وانتظر إجابتي ثم صحح واشرح','منظم':'ساعدني في تنظيم وقتي بخطة واقعية غير مرهقة','اكتشف أخطائي':'حلل إجابتي وحدد نقاط الضعف واقترح تدريبات','مراجعة سريعة':'قدّم أهم الأفكار والتعريفات والقوانين باختصار','شرعي':'ساعدني في فهم المادة الشرعية وفق المنهج الأزهري ونبّه للرجوع للمعلم في المسائل الخلافية','اسألني لأفهم':'لا تعطني الحل مباشرة، بل قدني بأسئلة وتلميحات حتى أصل للإجابة'};
+function lvl(){return D.grade&&`${AR[D.grade-1]} ${D.stage}${D.track?' ('+D.track+')':''}`}
+function sys(){return `أنت مساعد دراسي لطالب أزهري في الصف ${lvl()}. اشرح بلغة عربية مبسطة تناسب سنه ومرحلته ولا تختلق معلومات ولا تنسب شيئًا لكتاب رسمي دون تأكد، وقل بصراحة إذا لم تكن متأكدًا، وفي المسائل الشرعية الخلافية انصح بالرجوع للمعلم. ${V.csub?'المادة: '+V.csub+'. ':''}الوضع المطلوب: ${MODES[V.mode]}.`}
+function subs(){let b;if(D.stage==='ثانوي'){b=['القرآن 
+والتفسير','الحديث','التوحيد','الفقه','النحو','الصرف','البلاغة','الأدب والنصوص','الإنجليزية'];b.push(...(D.track==='أدبي'?['التاريخ','الجغرافيا','الرياضيات']:D.track==='علمي'?['الرياضيات','الفيزياء','الكيمياء','الأحياء']:['الرياضيات','العلوم']))}else b=['القرآن والتجويد','الحديث','التوحيد','الفقه','النحو',D.stage==='إعدادي'?'الصرف':'الإملاء والتعبير',D.stage==='إعدادي'?'البلاغة والأدب':'المطالعة','الإنجليزية','الرياضيات','العلوم','الدراسات الاجتماعية','الحاسب'];return b.concat(D.extra||[])}
+async function api(b){let r;try{r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)})}catch(e){throw{code:'offline'}}const j=await r.json().catch(()=>({}));if(!r.ok)throw{code:j.code||'server'};return j}
+function mk(){const f=async(inp,o)=>{const j=await api({messages:typeof inp==='string'?[{role:'user',content:inp}]:inp});if(o&&o.onText)o.onText({text:j.text});return{text:j.text}};f.json=async p=>{const j=await api({messages:[{role:'user',content:p}],json:true});try{return JSON.parse(j.text.replace(/^```(?:json)?|```$/g,'').trim())}catch(e){throw{code:'badjson'}}};return f}
+async function S(){return mk()}
+function noAI(){return V.ai===false?'<div class="card" style="border-color:var(--no)">⚠️ المعلم الذكي غير مفعّل: لم يُضبط مفتاح GEMINI_API_KEY على الخادم. بقية الموقع يعمل بصورة طبيعية.</div>':''}
+const errMsg=e=>({no_key:'المعلم الذكي غير مفعّل: لم يُضبط مفتاح GEMINI_API_KEY على الخادم. بقية الموقع يعمل بصورة طبيعية.',bad_key:'مفتاح Gemini غير صالح، راجع إعدادات الخادم.',offline:'لا يوجد اتصال بالإنترنت أو بالخادم. تحقق من الشبكة وحاول مرة أخرى.',rate_limited:'الطلبات كثيرة، انتظر دقيقة ثم حاول مرة أخرى.',quota:'تم تجاوز حد الاستخدام المجاني لـ Gemini حاليًا، حاول لاحقًا.',daily_limit:'وصل الموقع إلى الحد اليومي للاستخدام، حاول غدًا.',badjson:'تعذّر فهم رد المعلم، حاول مرة أخرى.'}[e&&e.code]||'حدث خطأ، حاول مرة أخرى.');
+
+/* shell */
+function render(){if(!D)return onboard();if(D.day!==today()){D.day=today();D.tasks=[];save()}$('#nav').hidden=false;$('#nav').innerHTML=[['home','🏠','الرئيسية'],['chat','💬','المساعد'],['subj','📚','المواد'],['quiz','📝','اختبار'],['sums','🗂️','ملخصات'],['time','⏰','وقتي']].map(([k,i,n])=>`<button class="${V.v===k?'on':''}" onclick="go('${k}')"><b>${i}</b>${n}</button>`).join('');({home,chat,subj,quiz,sums,time}[V.v])()}
+function go(v){V.v=v;render();scrollTo(0,0)}
+function bar(p){return `<div class="bar"><i style="width:${p}%"></i></div>`}
+
+/* onboarding */
+function onboard(){$('#nav').hidden=true;const s=T.stage;$('#app').innerHTML=`<div class="card"><h3>أهلًا بك 🌿 لنبدأ</h3><input id="nm" placeholder="اسمك أو اسم مستعار" value="${esc(T.name||'')}"><select id="st" onchange="T.name=$('#nm').value;T.stage=this.value;onboard()">${['ابتدائي','إعدادي','ثانوي'].map(x=>`<option ${x===s?'selected':''}>${x}</option>`).join('')}</select><select id="gr">${Array.from({length:s==='ابتدائي'?6:3},(_,i)=>`<option value="${i+1}">الصف ${AR[i]}</option>`).join('')}</select>${s==='ثانوي'?'<select id="tk"><option value="">عام (الصف الأول)</option><option>علمي</option><option>أدبي</option></select>':''}<button class="go" onclick="start()">ابدأ</button><p class="mu">بياناتك تُحفظ على جهازك فقط.</p></div>`}
+function start(){const n=$('#nm').value.trim()||'طالب';D={name:n,stage:T.stage,grade:+$('#gr').value,track:$('#tk')?$('#tk').value:'',les:{},tasks:[],sec:{},quizzes:[],errors:[],pts:0,chat:[],day:today(),extra:[]};save();render()}
+
+/* home */
+const TL=[['subj','📚','المواد الدراسية','ابدأ رحلتك التعليمية','linear-gradient(135deg,#2f6bff,#4a8dff)'],
+['quiz','📝','الاختبارات','اختبر معلوماتك','linear-gradient(135deg,#0f9d6b,#27c08a)'],['sums','🗂️','الملخصات','أهم ما في الدرس','linear-gradient(135deg,#d9961f,#f0b63f)'],['chat','🤖','المعلم الذكي','اسأل وتعلّم','linear-gradient(135deg,#6a3fd6,#8d5cf0)'],['time','🗓️','جدول الدراسة','نظّم وقتك','linear-gradient(135deg,#0f9aa8,#2cc3cf)'],['prog','📈','متابعة التقدم','تابع خطواتك','linear-gradient(135deg,#d6416f,#ef6a93)']];
+const ICO=[['قرآن','📖'],['تفسير','📘'],['حديث','📜'],['توحيد','🕋'],['فقه','⚖️'],['نحو','✒️'],['صرف','🔤'],['بلاغة','🪶'],['أدب','📚'],['إنجليزية','🔠'],['رياضيات','🧮'],['فيزياء','⚛️'],['كيمياء','🧪'],['أحياء','🧬'],['علوم','🔬'],['تاريخ','🏛️'],['جغرافيا','🗺️'],['دراسات','🌍'],['حاسب','💻'],['إملاء','✏️'],['مطالعة','📗']];
+const ico=s=>(ICO.find(([k])=>s.includes(k))||[0,'📕'])[1];
+function tl(k){k==='prog'?$('#prog').scrollIntoView({behavior:'smooth'}):go(k)}
+function home(){const t=D.tasks,dn=t.filter(x=>x.d).length,tp=t.length?Math.round(dn*100/t.length):0;let n=0,md=0;Object.values(D.les).forEach(a=>a.forEach(l=>{n++;if(l.s==2)md++}));const pc=n?Math.round(md*100/n):0,h=(Object.values(D.sec).reduce((a,b)=>a+b,0)/3600).toFixed(1),ex=D.exam&&D.exam.date?Math.ceil((new Date(D.exam.date)-new Date())/864e5):null;
+const bars=Object.entries(D.les).filter(([k,a])=>a.length).slice(0,5).map(([k,a])=>{const p=Math.round(a.filter(l=>l.s==2).length*100/a.length);return `<div class="pb"><em>${esc(k)}</em><div class="bar"><i style="width:${p}%"></i></div><u>${p}%</u></div>`}).join('');
+$('#app').innerHTML=noAI()+`<div class="hero"><h2>مرحبًا بك مجددًا يا ${esc(D.name)} 👋</h2><p>خطوتك اليوم تقرّبك من حلمك 🌙</p><small>${lvl()} · المستوى ${Math.floor(D.pts/100)+1} · ${D.pts} نقطة</small></div>
+<div class="tiles">${TL.map(([k,i,a,b,g])=>`<button class="tile" 
+style="background:${g}" onclick="tl('${k}')"><i>${i}</i><b>${a}</b><span>${b}</span></button>`).join('')}</div>
+<div class="card" id="prog"><h3>📈 متابعة التقدم</h3><div class="row" style="gap:14px"><div class="ring" style="--p:${pc}"><span>${pc}%</span></div><div style="flex:1"><div class="mu">دروس أتقنتها: <b>${md}/${n}</b></div><div class="mu">اختبارات مكتملة: <b>${D.quizzes.length}</b></div><div class="mu">ملخصات محفوظة: <b>${(D.sums||[]).length}</b></div></div></div><div style="margin-top:8px">${bars||'<span class="mu">أضف دروسًا في «المواد» ليظهر تقدمك في كل مادة.</span>'}</div></div>
+<div class="grid"><div class="card st"><b>${tp}%</b><span>مهام اليوم (${dn} من ${t.length})</span></div><div class="card st"><b>${ex===null?'—':ex>=0?ex:'انتهى'}</b><span>${ex===null?'حدد موعد امتحانك':'يوم على '+esc(D.exam.name||'الامتحان')}</span></div><div class="card st"><b>${h}</b><span>ساعات المذاكرة</span></div><div class="card st"><b>${D.errors.length}</b><span>في دفتر الأخطاء</span></div></div>
+<div class="card"><h3>مهام اليوم</h3>${t.length?t.map(x=>`<div class="t ${x.d?'d':''}"><span>${esc(x.time||'')} ${esc(x.t)}</span></div>`).join(''):'<span class="mu">لا مهام بعد. أنشئ جدولك من «جدول الدراسة».</span>'}</div>
+<div class="card"><h3>⚙️ إعدادات الذكاء الاصطناعي</h3><div class="mu">Gemini API: <b>${V.ai===true?'مفعّل':V.ai===false?'غير مفعّل':'نسخة تجريبية'}</b></div><p class="mu">لا يظهر المفتاح في الموقع أبدًا؛ يُضبط على الخادم في GEMINI_API_KEY. بدونه تعمل بقية الأدوات طبيعيًا.</p></div>
+<button class="go g2" onclick="if(confirm('حذف كل بياناتك؟')){localStorage.removeItem('az');D=null;render()}">حذف بياناتي</button>`}
+/* chat */
+function chat(){$('#app').innerHTML=noAI()+`<div class="chips">${Object.keys(MODES).map(m=>`<button 
+class="${m===V.mode?'on':''}" onclick="V.mode='${m}';chat()">${m}</button>`).join('')}</div>
+<select onchange="V.csub=this.value"><option value="">كل المواد</option>${subs().map(s=>`<option ${s===V.csub?'selected':''}>${esc(s)}</option>`).join('')}</select>
+<div class="chips">${["اشرح لي درس المجاز في البلاغة","ما هي صفات الملائكة؟","أعطني ملخص درس التوحيد","أمثلة على الإعراب"].map(q=>`<button onclick="send(this.textContent)">${q}</button>`).join("")}</div><div class="card"><div id="msgs">${D.chat.length?D.chat.map(m=>`<div class="b ${m.role==='user'?'me':'ai'}">${esc(m.content)}</div>`).join(''):'<div class="b ai">أنا مدرسك الذكي 🌿 اكتب اسم أي درس فقط، وسأشرحه بكل تفاصيله وأركانه، وفي النهاية أشرحه لك بطريقة مبسطة جدًا كأنك طفل صغير.</div>'}</div></div>
+<div class="row"><textarea id="ci" rows="1" placeholder="اكتب اسم الدرس أو سؤالك..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"></textarea><button class="go" id="cb" onclick="send()">إرسال</button></div>
+<p class="c"><button class="ic" style="font-size:.85rem" onclick="D.chat=[];save();chat()">🗑️ محادثة جديدة</button></p>`;const m=$('#msgs');m.scrollTop=1e9}
+async function send(txt){const i=$('#ci'),q=(txt||(i&&i.value)||'').trim();if(!q||V.busy)return;V.busy=1;if(i)i.value='';D.chat.push({role:'user',content:q});const m=$('#msgs');m.insertAdjacentHTML('beforeend',`<div class="b me">${esc(q)}</div><div class="b ai" id="cur">...</div>`);m.scrollTop=1e9;const cur=$('#cur');let inp=D.chat.slice(-12);while(inp[0].role!=='user')inp.shift();inp=inp.map((x,k)=>k?x:{role:'user',content:sys()+'\n\n'+x.content});const s=await S();
+if(!s){cur.textContent='الذكاء الاصطناعي غير متاح في هذا العرض.';D.chat.pop()}else try{const r=await s(inp,{cache:false,onText:
+({text})=>{cur.textContent=text;m.scrollTop=1e9}});cur.textContent=r.text;D.chat.push({role:'assistant',content:r.text})}catch(e){cur.textContent=errMsg(e);D.chat.pop()}
+cur.removeAttribute('id');V.busy=0;save()}
+
+/* subjects */
+function subj(){const L=subs();if(V.sub!==null&&V.open!=null){const s=L[V.open],a=D.les[s]=D.les[s]||[];$('#app').innerHTML=`<button class="go g2" onclick="V.open=null;subj()">← المواد</button><div class="card"><h3>${esc(s)}</h3><div class="row"><input id="ln" placeholder="أضف درسًا (مثال: الفاعل)"><button class="go" onclick="addL()">+</button></div></div>${a.map((l,i)=>`<div class="card"><div class="row"><b style="flex:1">${esc(l.t)}</b><button class="go g2" onclick="cyc(${i})">${['⚪ لم يبدأ','🟡 ذاكرته','🟢 أتقنته'][l.s]}</button></div><div class="row" style="margin-top:6px"><div class="lk"><button class="go" onclick="expl(${i},0)">الشرح</button><button class="go g2" onclick="expl(${i},1)">الأمثلة</button><button class="go g2" onclick="expl(${i},2)">ملخص</button><button class="go g2" onclick="qL(${i})">اختبرني</button></div><button class="ic" onclick="dl(${i})">🗑️</button></div></div>`).join('')||'<p class="mu">أضف دروس المنهج الذي تدرسه ليتابعها المساعد معك.</p>'}`;return}
+$('#app').innerHTML=`<p class="mu">المواد استرشادية حسب صفك، أضف أو عدّل بما يطابق كتبك.</p><div class="grid">${L.map((s,i)=>{const a=D.les[s]||[],m=a.filter(l=>l.s==2).length;return `<button class="sc" onclick="V.open=${i};subj()"><span class="ico">${ico(s)}</span><b>${esc(s)}</b>${bar(a.length?m*100/a.length:0)}<span class="mu">${m}/${a.length} دروس</span></button>`}).join('')}</div><div class="card"><div class="row"><input id="ns" placeholder="مادة جديدة"><button class="go" onclick="addS()">+</button></div></div>`}
+function addS(){const v=$('#ns').value.trim();if(v){(D.extra=D.extra||[]).push(v);save();subj()}}
+function cur(){const s=subs()[V.open];return [s,D.les[s]]}
+function dl(i){const[s,a]=cur();a.splice(i,1);save();subj()}
+function addL(){const v=$('#ln').value.trim();if(!v)return;const[s,a]=cur();a.push({t:v,s:0});save();subj()}
+function cyc(i){const[s,a]=cur();a[i].s=(a[i].s+1)%3;if(a[i].s==2)D.pts+=20;save();subj()}
+function expl(i,k=0){const[s,a]=cur(),t=a[i].t;V.csub=s;V.mode=k==2?'ملخص':'شرح درس';V.v='chat';render();send([`اشرح لي درس «${t}» في مادة ${s}`,`أعطني أمثلة متنوعة محلولة من السهل إلى الصعب على درس «${t}» في مادة ${s}`,`لخّص لي درس «${t}» في مادة ${s} في نقاط للمراجعة`][k])}
+function qL(i){const[s,a]=cur();V.qsub=s;V.qtp=a[i].t;go('quiz')}
+
+/* quiz */
+function quiz(){const L=subs();$('#app').innerHTML=noAI()+`<div class="card"><h3>📝 منشئ الاختبارات</h3><select id="qs">${L.map(s=>`<option ${s===V.qsub?'selected':''}>${esc(s)}</option>`).join('')}</select><input id="qt" placeholder="الدرس أو الموضوع" value="${esc(V.qtp||'')}"><div class="row"><select id="qn"><option>5</option><option>10</option></select><select id="qd"><option>سهل</option><option selected>متوسط</option><option>صعب</option></select></div><button class="go" id="qg" onclick="genQ()">أنشئ الاختبار</button></div><div id="qa"></div>${D.errors.length?`<div class="card"><h3>📕 دفتر الأخطاء (${D.errors.length})</h3>${D.errors.slice(-4).reverse().map(e=>`<div class="mu">• ${esc(e.subj)}: ${esc(e.q)}</div>`).join('')}<button class="go g2" onclick="V.csub='';V.mode='اكتشف أخطائي';V.v='chat';render();send('هذه أسئلة أخطأت فيها، درّبني عليها: '+D.errors.slice(-5).map(e=>e.q).join(' | '))">تدرّب على أخطائي</button></div>`:''}`;V.qsub=V.qtp=null;if(V.qz)showQ()}
+async function genQ(){const sj=$('#qs').value,tp=$
+('#qt').value.trim(),n=$('#qn').value,df=$('#qd').value,b=$('#qg'),s=await S();if(!s){$('#qa').innerHTML='<p>الذكاء الاصطناعي غير متاح.</p>';return}b.disabled=true;b.textContent='جارٍ الإنشاء...';
+try{const r=await s.json(`${sys()}\nأنشئ ${n} أسئلة اختيار من متعدد في مادة ${sj}${tp?' عن: '+tp:''} بمستوى ${df}. أجب بـ JSON فقط بلا أي نص آخر: [{"q":"السؤال","o":["أ","ب","ج","د"],"a":0,"e":"شرح موجز للإجابة"}] حيث a رقم الخيار الصحيح. لا تنسب الأسئلة لامتحان رسمي.`);if(!Array.isArray(r)||!r.length)throw 0;V.qz={sj,qs:r.filter(x=>x&&x.q&&Array.isArray(x.o)),done:0};V.ans=[];showQ()}catch(e){$('#qa').innerHTML=`<p>${errMsg(e)}</p>`}b.disabled=false;b.textContent='أنشئ الاختبار'}
+function showQ(){const z=V.qz;$('#qa').innerHTML=z.qs.map((q,i)=>`<div class="card"><b>${i+1}. ${esc(q.q)}</b>${q.o.map((o,j)=>`<button class="o ${z.done?(j==q.a?'ok':V.ans[i]==j?'bad':''):V.ans[i]==j?'sel':''}" ${z.done?'disabled':''} onclick="V.ans[${i}]=${j};showQ()">${esc(o)}</button>`).join('')}${z.done?`<div class="mu pre">${V.ans[i]==q.a?'✅ إجابة صحيحة. ':'❌ الصحيح: '+esc(q.o[q.a])+'. '}${esc(q.e||'')}</div>`:''}</div>`).join('')+(z.done?`<div class="card"><h3>نتيجتك: ${z.sc}/${z.qs.length}</h3><span class="mu">${z.sc==z.qs.length?'ممتاز! 🌟':'الأخطاء حُفظت في دفتر الأخطاء لتراجعها.'}</span></div>`:`<button class="go" onclick="gradeQ()">تصحيح</button>`)}
+function gradeQ(){const z=V.qz;z.sc=0;z.qs.forEach((q,i)=>{if(V.ans[i]==q.a)z.sc++;else D.errors.push({subj:z.sj,q:q.q})});z.done=1;D.quizzes.push({subj:z.sj,score:z.sc,total:z.qs.length});D.pts+=z.sc*5;save();showQ()}
+
+/* time */
+let K={sec:1500,work:1,iv:null,n:0};
+function time(){const t=D.tasks;$('#app').innerHTML=`<div class="card"><h3>⏱️ مؤقت المذاكرة</h3><div class="row"><select id="ks"><option value="عام">مادة...</option>${subs().map(s=>`<option>${esc(s)}</option>`).join('')}</
+select><select id="kw" onchange="rst()"><option value="25">25 دقيقة</option><option value="45">45 دقيقة</option></select></div><div id="clk"></div><div class="c" id="kmd"></div><div class="row" style="justify-content:center"><button class="go" id="kb" onclick="tg()">${K.iv?'إيقاف':'ابدأ'}</button><button class="go g2" onclick="rst()">إعادة</button></div></div>
+<div class="card"><h3>✅ مهام اليوم</h3>${t.map((x,i)=>`<div class="t ${x.d?'d':''}"><input type="checkbox" ${x.d?'checked':''} onchange="chk(${i})"><span>${esc(x.time||'')} ${esc(x.t)}</span><button class="ic" onclick="D.tasks.splice(${i},1);save();time()">✕</button></div>`).join('')}<div class="row" style="margin-top:6px"><input id="ti" placeholder="أضف مهمة"><button class="go" onclick="addT()">+</button></div></div>
+<div class="card"><h3>🗓️ جدول ذكي</h3><div class="row"><input id="ph" type="number" min="1" max="10" placeholder="ساعات متاحة" value="3"><input id="pt" type="time" value="16:00"></div><div class="row" style="margin-top:6px"><button class="go" id="pg" onclick="plan(0)">أنشئ جدولي</button><button class="go g2" onclick="plan(1)">أعد تنظيم يومي</button></div><p class="mu" id="pm"></p></div>
+<div class="card"><h3>🎯 موعد الامتحان</h3><div class="row"><input id="en" placeholder="اسم الامتحان" value="${esc((D.exam||{}).name||'')}"><input id="ed" type="date" value="${(D.exam||{}).date||''}"></div><button class="go g2" style="margin-top:6px" onclick="D.exam={name:$('#en').value,date:$('#ed').value};save();time()">حفظ</button></div>`;clk()}
+function clk(){const c=$('#clk');if(!c)return;c.textContent=String(Math.floor(K.sec/60)).padStart(2,'0')+':'+String(K.sec%60).padStart(2,'0');$('#kmd').textContent=K.work?'وقت المذاكرة':'استراحة ☕'}
+function tg(){if(K.iv){clearInterval(K.iv);K.iv=null;save()}
+else K.iv=setInterval(()=>{K.sec--;if(K.work){const s=($('#ks')||{}).value||'عام';D.sec[s]=(D.sec[s]||0)+1}if(++K.n%30==0)save();if(K.sec<=0){if(K.work)D.pts+=5;K.work=!K.work;K.sec=K.work?(+($('#kw')||{value:25}).value)*60:300;save()}clk()},1000);const b=$('#kb');if(b)b.textContent=K.iv?'إيقاف':'ابدأ'}
+function rst(){clearInterval(K.iv);K.iv=null;K.work=1;K.sec=(+$('#kw').value)*60;$('#kb').textContent='ابدأ';clk()}
+function addT(){const v=$('#ti').value.trim();if(v){D.tasks.push({t:v,d:0});save();time()}}
+function chk(i){D.tasks[i].d=!D.tasks[i].d;if(D.tasks[i].d)D.pts+=10;save();time()}
+async function plan(re){const s=await S(),m=$('#pm');if(!s){m.textContent='الذكاء الاصطناعي غير متاح.';return}const now=new Date().toTimeString().slice(0,5),pend=[];Object.entries(D.les).forEach(([k,a])=>a.forEach(l=>{if(l.s<2)pend.push(k+': '+l.t)}));
+const todo=D.tasks.filter(x=>!x.d).map(x=>x.t);m.textContent='جارٍ التنظيم...';
+const p=`${sys()}\n${re?`الوقت الآن ${now}. هذه مهامي المتبقية: ${todo.join('، ')||'لا شيء'}. أعد توزيعها على باقي اليوم بدون تكديس.`:`اعمل جدول مذاكرة لليوم يبدأ ${$('#pt').value} ومدته ${$('#ph').value} ساعات. الدروس المتأخرة: ${pend.slice(0,8).join('، ')||'غير محددة، اقترح مراجعة موادي: '+subs().slice(0,5).join('، ')}.`} وازن بين دروس جديدة ومراجعة واستراحات وصلاة. أجب بـ JSON فقط: [{"time":"16:00","t":"المهمة"}]`;
+try{const r=await s.json(p);if(!Array.isArray(r))throw 0;D.tasks=r.filter(x=>x&&x.t).map(x=>({time:String(x.time||''),t:String(x.t),d:0}));save();time()}catch(e){m.textContent=errMsg(e)}}
+function sums(){const a=D.sums=D.sums||[];$('#app').innerHTML=noAI()+`<div class="card"><h3>🗂️ الملخصات</h3><select id="ms">${subs().map(s=>`<option>${esc(s)}</option>`).join('')}</select><select id="mt"><option>ملخص بنقاط وعناوين</option><option>سؤال 
+وجواب</option><option>تعريفات ومصطلحات</option><option>مراجعة سريعة قبل الامتحان</option></select><textarea id="mx" rows="5" placeholder="الصق نص الدرس هنا"></textarea><button class="go" id="mb" onclick="mkSum()">لخّص واحفظ</button><p class="mu" id="mm"></p></div>`+(a.map((x,k)=>`<div class="card"><b>${esc(x.subj)} · ${esc(x.type)}</b><div class="pre">${esc(x.text)}</div><div class="row" style="margin-top:6px"><button class="go g2" onclick="navigator.clipboard&&navigator.clipboard.writeText(D.sums[${k}].text)">نسخ</button><button class="go g2" onclick="D.sums.splice(${k},1);save();sums()">حذف</button></div></div>`).reverse().join('')||'<p class="mu">لا ملخصات محفوظة بعد.</p>')}
+async function mkSum(){const t=$('#mx').value.trim(),m=$('#mm'),b=$('#mb');if(!t)return;V.csub=$('#ms').value;V.mode='ملخص';b.disabled=true;m.textContent='جارٍ التلخيص...';try{const r=await(await S())([{role:'user',content:sys()+'\nالمطلوب: '+$('#mt').value+'.\nالنص:\n'+t.slice(0,6000)}]);D.sums.push({subj:V.csub,type:$('#mt').value,text:r.text,date:today()});save();sums()}catch(e){m.textContent=errMsg(e);b.disabled=false}}
+addEventListener('offline',()=>$('#off').style.display='block');addEventListener('online',()=>$('#off').style.display='none');if(!navigator.onLine)$('#off').style.display='block';
+fetch('/api/status').then(r=>r.json()).then(j=>{V.ai=!!j.ai;if(!V.ai)render()}).catch(()=>{});
+render();
+</script></body></html>
