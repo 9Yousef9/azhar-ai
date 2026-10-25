@@ -1,0 +1,1 @@
+{"name":"azhar-ai-study-assistant","version":"1.0.0","private":true,"description":"مساعد دراسي لطلاب الأزهر","main":"server.js","scripts":{"start":"node server.js","test":"node test.js"},"engines":{"node":">=18"}}
